@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 
 const dbConfig = require("./db");
@@ -10,6 +11,7 @@ app.use(express.json());
 app.use("/api/rooms", roomsRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/bookings", bookingRoute);
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 const port = process.env.PORT || 5000;
 app.get("/", (req, res) => res.send("Hello World!"));
