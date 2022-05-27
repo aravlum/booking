@@ -6,6 +6,12 @@ const roomsRoute = require("./routes/roomRoute");
 const usersRoute = require("./routes/userRoute");
 const bookingRoute = require("./routes/bookingRoute");
 
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+
+app.get("*", function (request, response) {
+    response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
+
 app.use(express.json());
 app.use("/api/rooms", roomsRoute);
 app.use("/api/users", usersRoute);
